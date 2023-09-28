@@ -113,7 +113,7 @@ model Case600FF
   Modelica.Blocks.Routing.Multiplex3 multiplex3_1
     annotation (Placement(transformation(extent={{-18,64},{-10,72}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos"),
+        Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
       computeWetBulbTemperature=true)
     annotation (Placement(transformation(extent={{98,-94},{86,-82}})));
   Modelica.Blocks.Sources.Constant uSha(k=0)
@@ -172,7 +172,7 @@ model Case600FF
   Buildings.Fluid.Sources.MassFlowSource_WeatherData
                                            sinInf(
     redeclare package Medium = MediumA,
-    m_flow=1,
+    m_flow=0,
     use_m_flow_in=true,
     use_C_in=true,
     nPorts=1) "Sink model for air infiltration"
@@ -206,7 +206,7 @@ model Case600FF
   Buildings.Fluid.Sources.MassFlowSource_WeatherData
                                            souInf(
     redeclare package Medium = MediumA,
-    m_flow=1,
+    m_flow=0,
     use_m_flow_in=true,
     use_C_in=true,
     nPorts=1) "source model for air infiltration"
@@ -224,19 +224,19 @@ model Case600FF
   InternalLoad lig(
     radFraction=0.5,
     latPower_nominal=0,
-    senPower_nominal=11.8)
+    senPower_nominal=0)
     annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
   InternalLoad equ(
     latPower_nominal=0,
-    senPower_nominal=5.4,
+    senPower_nominal=0,
     radFraction=0.7)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
   OccupancyLoad occ(
     radFraction=0.6,
     co2Gen=8.64e-6,
     occ_density=2/48,
-    senPower=73,
-    latPower=45)
+    senPower=0,
+    latPower=0)
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
   Modelica.Blocks.Math.MultiSum sumRad(nu=3) "Sum of radiant internal gains"
     annotation (Placement(transformation(extent={{-52,82},{-40,94}})));

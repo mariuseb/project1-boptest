@@ -40,7 +40,7 @@ model RealOccupancy
     extrapolation=Modelica.Blocks.Types.Extrapolation.LastTwoPoints,
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     fileName=ModelicaServices.ExternalReferences.loadResource(
-        "modelica://OU44Emulator/occ.txt"))
+        "OU44Emulator/occ.txt"))
     annotation (Placement(transformation(extent={{-188,130},{-168,150}})));
   Buildings.Controls.SetPoints.OccupancySchedule Occupancy_schedule1(
     occupancy=3600*{31,43,55,67,79,91,103,115,127,139},
@@ -122,6 +122,48 @@ model RealOccupancy
     y(unit="people")) "Occupancy count for building"
     annotation (Placement(transformation(extent={{-148,132},{-132,148}})));
 
+  Modelica.Blocks.Sources.RealExpression realExpression(y=valRad.y)
+    annotation (Placement(transformation(extent={{170,-164},{190,-144}})));
+  Buildings.Utilities.IO.SignalExchange.Read reaValRad(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.None,
+    y(unit="1")) "Real valve opening."
+    annotation (Placement(transformation(extent={{220,-162},{240,-142}})));
+
+  Buildings.Utilities.IO.SignalExchange.Read reaPRad(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.None,
+    y(unit="W")) "Real valve opening."
+    annotation (Placement(transformation(extent={{218,-194},{238,-174}})));
+
+  Modelica.Blocks.Sources.RealExpression realExpression2(y=valRad.port_1.m_flow)
+    annotation (Placement(transformation(extent={{166,-226},{186,-206}})));
+  Buildings.Utilities.IO.SignalExchange.Read reaValFlo(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.FreshWaterFlowRate,
+    y(unit="kg/s")) "Real valve opening."
+    annotation (Placement(transformation(extent={{216,-224},{234,-206}})));
+
+  Buildings.Utilities.IO.SignalExchange.Read reaTRadIn(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.None,
+    y(unit="K")) "T radiator in"
+    annotation (Placement(transformation(extent={{216,-134},{236,-114}})));
+
+  Buildings.Utilities.IO.SignalExchange.Read reaTRadOut(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.None,
+    y(unit="K")) "T radiator out"
+    annotation (Placement(transformation(extent={{208,-108},{230,-86}})));
+
+  Modelica.Blocks.Sources.RealExpression realExpression3(y=rad.port_a.m_flow)
+    annotation (Placement(transformation(extent={{168,-252},{188,-232}})));
+  Buildings.Utilities.IO.SignalExchange.Read reaRadFlo(
+    description="",
+    KPIs=Buildings.Utilities.IO.SignalExchange.SignalTypes.SignalsForKPIs.FreshWaterFlowRate,
+    y(unit="kg/s")) "Radiator mass flow"
+    annotation (Placement(transformation(extent={{218,-250},{238,-230}})));
+
 equation
   connect(booleanToReal1.u, Occupancy_schedule1.occupied) annotation (Line(
         points={{166.6,79},{174.3,79},{174.3,71.2},{152.8,71.2}}, color={255,0,
@@ -176,7 +218,26 @@ equation
           -20},{120,-20},{120,-44},{117.6,-44}}, color={0,0,127}));
   connect(ovePum.y, districtHeating.y) annotation (Line(points={{-171,-194},{
           -158,-194},{-158,-196},{-143,-196}}, color={0,0,127}));
-  annotation (experiment(StopTime=31536000),               Diagram(
+  connect(reaValRad.u, realExpression.y)
+    annotation (Line(points={{218,-152},{204,-152},{204,-154},{191,-154}},
+                                                       color={0,0,127}));
+  connect(reaValFlo.u, realExpression2.y)
+    annotation (Line(points={{214.2,-215},{200,-215},{200,-216},{187,-216}},
+                                                       color={0,0,127}));
+  connect(tRadIn.T, reaTRadIn.u) annotation (Line(points={{-30,-71},{-32,-71},{
+          -32,-68},{28,-68},{28,-124},{214,-124}},
+                                                 color={0,0,127}));
+  connect(tRadOut.T, reaTRadOut.u) annotation (Line(points={{-30,-111},{-30,
+          -116},{184,-116},{184,-97},{205.8,-97}},
+                                             color={0,0,127}));
+  connect(reaRadFlo.u, realExpression3.y)
+    annotation (Line(points={{216,-240},{202,-240},{202,-242},{189,-242}},
+                                                       color={0,0,127}));
+  connect(energyMeterRad.q, reaPRad.u) annotation (Line(points={{-96,-112.6},{
+          -104,-112.6},{-104,-192},{188,-192},{188,-184},{216,-184}}, color={0,
+          0,127}));
+  annotation (experiment(StopTime=604800, __Dymola_Algorithm="Dassl"),
+                                                           Diagram(
         coordinateSystem(extent={{-260,-240},{240,220}}),          graphics={
         Rectangle(
           extent={{-192,168},{-44,100}},

@@ -27,6 +27,7 @@ gen = Data_Generator(resources_dir, period=900)
 gen.generate_weather()
 
 # Remove duplicate states
+"""
 df = pd.read_csv('Resources/TestCase_Ideal.csv')
 drop_list = []
 for i in range(len(df.index)):
@@ -63,3 +64,4 @@ df = df.rename(columns=column_map)
 
 
 df.to_csv('Resources/TestCase_Ideal_data.csv')
+"""

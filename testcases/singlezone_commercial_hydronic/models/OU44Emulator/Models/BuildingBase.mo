@@ -1045,13 +1045,13 @@ connect(weaBus, weaDat.weaBus) annotation (Line(
     index=-1,
     extent={{-6,3},{-6,3}}));
 connect(tFloorGround.port, ou44Bdg.surf_conBou[1])
-  annotation (Line(points={{20,18},{8,18},{8,39.5}},      color={191,0,0}));
+  annotation (Line(points={{20,18},{8,18},{8,39.75}},     color={191,0,0}));
 connect(const5.y, tFloorGround.T)
   annotation (Line(points={{51,18},{42,18}},     color={0,0,127}));
 connect(const4.y, tWallGround.T)
   annotation (Line(points={{51,-18},{42,-18}},     color={0,0,127}));
 connect(tWallGround.port, ou44Bdg.surf_conBou[2]) annotation (Line(points={{20,-18},
-        {8,-18},{8,40.5}},              color={191,0,0}));
+          {8,-18},{8,40.25}},           color={191,0,0}));
 connect(Ti.port, ou44Bdg.heaPorAir) annotation (Line(points={{34,56},{1,56}},
                             color={191,0,0}));
 connect(rad.heatPortRad, ou44Bdg.heaPorRad) annotation (Line(points={{-2,-74.8},
@@ -1117,13 +1117,14 @@ connect(matrixGain.u[1], metHeat.y)
           112},{-42,112},{-42,58.8},{-19.6,58.8}},
                                               color={0,0,127}));
   connect(infiltration.port_a, ou44Bdg.ports[1]) annotation (Line(points={{-60,30},
-          {-16,30},{-16,42.8},{-13,42.8}}, color={0,127,255}));
-  connect(ahu.port_b1, ou44Bdg.ports[2]) annotation (Line(points={{-120,40},{-66,
-          40},{-66,44.4},{-13,44.4}}, color={0,127,255}));
+          {-16,30},{-16,44.4},{-13,44.4}}, color={0,127,255}));
+  connect(ahu.port_b1, ou44Bdg.ports[2]) annotation (Line(points={{-120,40},{
+          -66,40},{-66,45.2},{-13,45.2}},
+                                      color={0,127,255}));
   connect(ahu.port_a1, ou44Bdg.ports[3]) annotation (Line(points={{-120,48},{-66,
           48},{-66,46},{-13,46}}, color={0,127,255}));
   connect(senCO2.port, ou44Bdg.ports[4]) annotation (Line(points={{-56,56},{-56,
-          47.6},{-13,47.6}}, color={0,127,255}));
+          46.8},{-13,46.8}}, color={0,127,255}));
   connect(energyMeterRad.q, Qh_rad.u) annotation (Line(points={{-96,-112.6},{-96,
           -172},{78,-172}}, color={0,0,127}));
   connect(energyMeterAhu.q, Qh_coil.u) annotation (Line(points={{-142.6,-58},{
@@ -1132,7 +1133,7 @@ connect(matrixGain.u[1], metHeat.y)
   connect(infiltration.port_b, senTemOut.port_a) annotation (Line(points={{-60,
           18},{-56,18},{-56,30},{-50,30}}, color={0,127,255}));
   connect(senTemOut.port_b, ou44Bdg.ports[5]) annotation (Line(points={{-30,30},
-          {-18,30},{-18,49.2},{-13,49.2}}, color={0,127,255}));
+          {-18,30},{-18,47.6},{-13,47.6}}, color={0,127,255}));
   connect(energyMeterMain.port_b, jun2.port_1)
     annotation (Line(points={{-126,-160},{-126,-94}}, color={0,127,255}));
   connect(gaiCO2.y, scale_factor.u)

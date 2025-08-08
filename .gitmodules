@@ -1,3 +1,3 @@
 [submodule "testcases/twin_rooms_emulator"]
 	path = testcases/twin_rooms_emulator
-	url = git@github.com:mariuseb/twin_rooms_emulator.git
+	url = https://github.com/mariuseb/twin_rooms_emulator.git

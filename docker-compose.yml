@@ -21,7 +21,7 @@ services:
       args:
         - NODE_ENV
     ports:
-      - "80:80"
+      - "1024:80"
     environment:
       - NODE_ENV
       - BOPTEST_JOB_QUEUE_URL

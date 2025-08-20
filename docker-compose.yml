@@ -15,6 +15,7 @@ services:
     volumes:
       - ./:/usr/src/boptest
   web: # main boptest application
+    container_name: boptest
     build:
       dockerfile: service/web/Dockerfile
       context: .
@@ -78,6 +79,11 @@ services:
     depends_on:
       - minio
   worker:
+    container_name: worker
+    logging:
+        driver: journald
+        options:
+            tag: worker
     build:
       dockerfile: service/worker/Dockerfile
       context: .

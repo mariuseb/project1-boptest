@@ -1,0 +1,6 @@
+[submodule "testcases/twin_rooms_emulator"]
+	path = testcases/twin_rooms_emulator
+	url = https://github.com/mariuseb/twin_rooms_emulator.git
+[submodule "testcases/twin_rooms_emulator_zero_int_gains"]
+	path = testcases/twin_rooms_emulator_zero_int_gains
+	url = https://github.com/mariuseb/twin_rooms_emulator.git

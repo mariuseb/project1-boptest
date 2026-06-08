@@ -124,7 +124,10 @@
         "Unit":"W"},
     "InternalGainsLat":{
         "Description":"Latent internal gains of zone",
-        "Unit":"W"}
+        "Unit":"W"},
+    "reaAuxPow":{
+        "Description":"Forecasted auxiliary power",
+        "Unit":"W"}        
     },
 "setpoints": {
     "LowerSetp":{
